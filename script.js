@@ -41,10 +41,20 @@ function initSnake(color) {
 }
 let snake1 = initSnake("purple");
 
-let apple = {
-  color: "red",
-  position: initPosition(),
-};
+function initApple(color) {
+  return {
+    color: color,
+    position: initPosition(),
+  };
+}
+
+let apple1 = initApple("red");
+let apple2 = initApple("blue");
+
+// let apple = {
+//   color: "red",
+//   position: initPosition(),
+// };
 
 function drawCell(ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -77,7 +87,8 @@ function draw() {
     for (let i = 1; i < snake1.body.length; i++) {
       drawCell(ctx, snake1.body[i].x, snake1.body[i].y, snake1.color);
     }
-    drawCell(ctx, apple.position.x, apple.position.y, apple.color);
+    drawCell(ctx, apple1.position.x, apple1.position.y, apple1.color);
+    drawCell(ctx, apple2.position.x, apple2.position.y, apple2.color);
 
     drawScore(snake1);
   }, REDRAW_INTERVAL);
@@ -109,25 +120,29 @@ function eat(snake, apple) {
 function moveLeft(snake) {
   snake.head.x--;
   teleport(snake);
-  eat(snake, apple);
+  eat(snake, apple1);
+  eat(snake, apple2);
 }
 
 function moveRight(snake) {
   snake.head.x++;
   teleport(snake);
-  eat(snake, apple);
+  eat(snake, apple1);
+  eat(snake, apple2);
 }
 
 function moveDown(snake) {
   snake.head.y++;
   teleport(snake);
-  eat(snake, apple);
+  eat(snake, apple1);
+  eat(snake, apple2);
 }
 
 function moveUp(snake) {
   snake.head.y--;
   teleport(snake);
-  eat(snake, apple);
+  eat(snake, apple1);
+  eat(snake, apple2);
 }
 
 function checkCollision(snakes) {
